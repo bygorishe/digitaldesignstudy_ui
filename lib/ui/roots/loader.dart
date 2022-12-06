@@ -13,7 +13,7 @@ class _ViewModel extends ChangeNotifier {
 
   void _asyncInit() async {
     if (await _authService.checkAuth()) {
-      AppNavigator.toHome();
+      AppNavigator.toApp();
     } else {
       AppNavigator.toAuth();
     }

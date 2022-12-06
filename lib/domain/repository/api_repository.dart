@@ -1,8 +1,9 @@
 import 'package:digitaldesignstudy_ui/domain/model/token_response.dart';
+import 'package:digitaldesignstudy_ui/domain/model/user.dart';
 
 abstract class ApiRepository {
   Future<TokenResponse?> getToken(
       {required String login, required String password});
-  // Future<TokenResponse?> refreshToken(String refreshToken);
-  // Future<User?> getUser();
+  Future<TokenResponse?> refreshToken(String refreshToken);
+  Future<User?> getUser();
 }

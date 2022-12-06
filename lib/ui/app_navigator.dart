@@ -1,4 +1,5 @@
-import 'package:digitaldesignstudy_ui/ui/roots/home.dart';
+import 'package:digitaldesignstudy_ui/ui/roots/app.dart';
+import 'package:digitaldesignstudy_ui/ui/roots/info.dart';
 import 'package:digitaldesignstudy_ui/ui/roots/auth.dart';
 import 'package:digitaldesignstudy_ui/ui/roots/loader.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,8 @@ import 'package:flutter/material.dart';
 class NavigationRoutes {
   static const loaderWidget = "/";
   static const auth = "/auth";
-  static const home = "/home";
+  static const app = "/app";
+  static const info = "/info";
 }
 
 class AppNavigator {
@@ -22,9 +24,13 @@ class AppNavigator {
         ?.pushNamedAndRemoveUntil(NavigationRoutes.auth, ((route) => false));
   }
 
-  static void toHome() {
+  static void toApp() {
     key.currentState
-        ?.pushNamedAndRemoveUntil(NavigationRoutes.home, ((route) => false));
+        ?.pushNamedAndRemoveUntil(NavigationRoutes.app, ((route) => false));
+  }
+
+  static void toInfo() {
+    key.currentState?.pushNamed(NavigationRoutes.info);
   }
 
   static Route<dynamic>? onGeneratedRoutes(RouteSettings settings, context) {
@@ -34,11 +40,10 @@ class AppNavigator {
             pageBuilder: ((_, __, ___) => LoaderWidget.create()));
       case NavigationRoutes.auth:
         return PageRouteBuilder(pageBuilder: ((_, __, ___) => Auth.create()));
-      case NavigationRoutes.home:
-        return PageRouteBuilder(
-            pageBuilder: ((_, __, ___) => const Home(
-                  title: "Hi",
-                )));
+      case NavigationRoutes.app:
+        return PageRouteBuilder(pageBuilder: ((_, __, ___) => App.create()));
+      case NavigationRoutes.info:
+        return PageRouteBuilder(pageBuilder: ((_, __, ___) => Info.create()));
     }
     return null;
   }
