@@ -52,79 +52,155 @@ class Info extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Center(
             child: Column(children: [
-              Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "$baseUrl${viewModel.user!.avatarLink}",
-                        headers: viewModel.headers),
-                    radius: 60,
-                    foregroundColor: Colors.blue,
-                  )),
-              Text(
-                viewModel.user!.name,
-                textScaleFactor: 2,
-              ),
-              Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  child: Row(
+              Row(children: [
+                Column(children: [
+                  Padding(
+                      padding: const EdgeInsets.all(20),
+                      child:
+                          (viewModel.user != null && viewModel.headers != null)
+                              ? CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                      "$baseUrl${viewModel.user!.avatarLink}",
+                                      headers: viewModel.headers),
+                                  radius: 60,
+                                  foregroundColor: Colors.blue,
+                                )
+                              : null),
+                  Text(
+                    (viewModel.user != null && viewModel.headers != null)
+                        ? viewModel.user!.name
+                        : "",
+                    textScaleFactor: 2,
+                  ),
+                ]),
+                Column(children: [
+                  Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Column(
                           //mainAxisAlignment: MainAxisAlignment.end,
                           children: const [
-                            Text("Fullname", textScaleFactor: 1.25)
+                            Text("Fullname: ", textScaleFactor: 1)
                           ],
                         ),
                         Column(
                           //mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(viewModel.user!.fullName,
-                                textScaleFactor: 1.25)
+                            Text(
+                                (viewModel.user != null &&
+                                        viewModel.headers != null)
+                                    ? viewModel.user!.fullName
+                                    : "",
+                                textScaleFactor: 1)
                           ],
                         )
-                      ])),
-              Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  child: Row(
+                      ]),
+                  Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Column(
                           //mainAxisAlignment: MainAxisAlignment.end,
                           children: const [
-                            Text("About", textScaleFactor: 1.25)
+                            Text("BirthDate: ", textScaleFactor: 1)
                           ],
                         ),
                         Column(
                           //mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(viewModel.user!.about, textScaleFactor: 1.25)
+                            Text(
+                                (viewModel.user != null &&
+                                        viewModel.headers != null)
+                                    ? viewModel.user!.birthDate.substring(0, 10)
+                                    : "",
+                                textScaleFactor: 1)
                           ],
                         )
-                      ])),
-              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-                Column(
-                  //mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [Text("BirthDate", textScaleFactor: 1.25)],
-                ),
-                Column(
-                  //mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(viewModel.user!.birthDate, textScaleFactor: 1.25)
-                  ],
-                )
+                      ]),
+                  Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          //mainAxisAlignment: MainAxisAlignment.end,
+                          children: const [
+                            Text("Followers: ", textScaleFactor: 1)
+                          ],
+                        ),
+                        Column(
+                          //mainAxisAlignment: MainAxisAlignment.start,
+                          children: const [
+                            TextButton(
+                                onPressed: null,
+                                child: Text(("in procces"), textScaleFactor: 1))
+                          ],
+                        )
+                      ]),
+                  Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          //mainAxisAlignment: MainAxisAlignment.end,
+                          children: const [
+                            Text("Subscridtions: ", textScaleFactor: 1)
+                          ],
+                        ),
+                        Column(
+                          //mainAxisAlignment: MainAxisAlignment.start,
+                          children: const [
+                            TextButton(
+                                onPressed: null,
+                                child: Text(("in procces"), textScaleFactor: 1))
+                          ],
+                        )
+                      ]),
+                  Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          //mainAxisAlignment: MainAxisAlignment.end,
+                          children: const [Text("Posts: ", textScaleFactor: 1)],
+                        ),
+                        Column(
+                          //mainAxisAlignment: MainAxisAlignment.start,
+                          children: const [
+                            TextButton(
+                                onPressed: null,
+                                child: Text(("in procces"), textScaleFactor: 1))
+                          ],
+                        )
+                      ])
+                ]),
               ]),
+              Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      const Text("About:", textScaleFactor: 1.25),
+                      Text(
+                          (viewModel.user != null && viewModel.headers != null)
+                              ? viewModel.user!.about
+                              : "",
+                          textScaleFactor: 1.25)
+                    ],
+                  )),
               Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
                 Column(
                   //mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
-                    Text("RegistrateDate", textScaleFactor: 1.25)
-                  ],
+                  children: const [Text("RegistrateDate", textScaleFactor: 1)],
                 ),
                 Column(
                   //mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(viewModel.user!.registrateDate, textScaleFactor: 1.25)
+                    Text(
+                        (viewModel.user != null && viewModel.headers != null)
+                            ? viewModel.user!.registrateDate.substring(0, 10)
+                            : "",
+                        textScaleFactor: 1)
                   ],
                 )
               ])
