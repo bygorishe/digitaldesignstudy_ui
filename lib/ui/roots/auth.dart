@@ -66,11 +66,11 @@ class _ViewModel extends ChangeNotifier {
             .then((value) => {state = state.copyWith(isLoading: false)});
       });
     } on NoNetworkException {
-      state = state.copyWith(errorText: "нет сети");
+      state = state.copyWith(errorText: "No services");
     } on WrongCredentionalException {
-      state = state.copyWith(errorText: "не правильный логин или пароль");
+      state = state.copyWith(errorText: "Incorrect login or password");
     } on ServerException {
-      state = state.copyWith(errorText: "произошла ошибка на сервере");
+      state = state.copyWith(errorText: "Server error");
     }
   }
 }
@@ -99,9 +99,20 @@ class Auth extends StatelessWidget {
                     obscureText: true,
                     decoration:
                         const InputDecoration(hintText: "Enter Password")),
-                ElevatedButton(
-                    onPressed: viewModel.checkFields() ? viewModel.login : null,
-                    child: const Text("Login")),
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                      child: ElevatedButton(
+                          onPressed: null, child: Text("Registration"))),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                      child: ElevatedButton(
+                          onPressed:
+                              viewModel.checkFields() ? viewModel.login : null,
+                          child: const Text("     Login     ")))
+                ]),
                 if (viewModel.state.isLoading)
                   const CircularProgressIndicator(),
                 if (viewModel.state.errorText != null)
@@ -111,6 +122,11 @@ class Auth extends StatelessWidget {
           ),
         ),
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: null,
+      //   child: Text("Registration"),
+      //   shape: ShapeBorder.lerp(a, b, t),
+      // ),
     );
   }
 

@@ -1,8 +1,11 @@
 import 'package:digitaldesignstudy_ui/ui/app_navigator.dart';
 import 'package:digitaldesignstudy_ui/ui/roots/loader.dart';
 import 'package:flutter/material.dart';
+import 'data/services/database.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DB.instance.init();
   runApp(const MyApp());
 }
 
